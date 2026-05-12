@@ -1,0 +1,16 @@
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\bin\Debug\net10.0\SupportFlowAI.Application.deps.json
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\bin\Debug\net10.0\SupportFlowAI.Application.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\bin\Debug\net10.0\SupportFlowAI.Application.pdb
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\bin\Debug\net10.0\SupportFlowAI.Domain.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\bin\Debug\net10.0\SupportFlowAI.Domain.pdb
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.csproj.AssemblyReference.cache
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.AssemblyInfoInputs.cache
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.AssemblyInfo.cs
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.csproj.CoreCompileInputs.cache
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.sourcelink.json
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportF.E27387D8.Up2Date
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\refint\SupportFlowAI.Application.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\SupportFlowAI.Application.pdb
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Application\obj\Debug\net10.0\ref\SupportFlowAI.Application.dll

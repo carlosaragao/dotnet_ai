@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nUWMfsHJF/Q=",
+  "dgSpecHash": "2qF50b/hXIQ=",
   "success": true,
   "projectFilePath": "D:\\Dados HD\\FIAP\\Disciplinas\\Inteligência Artificial com .NET\\projeto\\SupportFlowAI\\tests\\SupportFlowAI.Tests\\SupportFlowAI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.7\\microsoft.extensions.dependencyinjection.abstractions.10.0.7.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.net.test.sdk\\17.14.1\\microsoft.net.test.sdk.17.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.14.1\\microsoft.testplatform.objectmodel.17.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.testplatform.testhost\\17.14.1\\microsoft.testplatform.testhost.17.14.1.nupkg.sha512",

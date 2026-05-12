@@ -1,0 +1,12 @@
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\bin\Debug\net10.0\SupportFlowAI.Domain.deps.json
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\bin\Debug\net10.0\SupportFlowAI.Domain.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\bin\Debug\net10.0\SupportFlowAI.Domain.pdb
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.AssemblyInfoInputs.cache
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.AssemblyInfo.cs
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.csproj.CoreCompileInputs.cache
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.sourcelink.json
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\refint\SupportFlowAI.Domain.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\SupportFlowAI.Domain.pdb
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Domain\obj\Debug\net10.0\ref\SupportFlowAI.Domain.dll

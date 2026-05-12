@@ -34,11 +34,17 @@ public static class DependencyInjection
 
         services.AddScoped<IAiTicketAnalyzer, OpenAiTicketAnalyzer>();
 
+        services.AddHttpClient<IEmbeddingGenerator, OpenAiEmbeddingGenerator>(ConfigureOpenAiClient);
+
+        services.AddSingleton<IVectorSimilarity, CosineVectorSimilarity>();
+
         services.AddScoped<CreateTicketUseCase>();
         services.AddScoped<GetTicketByIdUseCase>();
         services.AddScoped<ListTicketsUseCase>();
         services.AddScoped<AnalyzeTicketUseCase>();
-
+        services.AddScoped<ExplainLlmConceptUseCase>();
+        services.AddScoped<CompareEmbeddingsUseCase>();
+        
         return services;
     }
 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SupportFlowAI.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb310fe963898e7f3906d589ed92a1e60210fc69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac0dcd6d5a103c42616fb593ffe8df0a0d943215")]
 [assembly: System.Reflection.AssemblyProductAttribute("SupportFlowAI.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SupportFlowAI.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

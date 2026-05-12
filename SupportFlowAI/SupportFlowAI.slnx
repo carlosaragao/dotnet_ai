@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SupportFlowAI.Api/SupportFlowAI.Api.csproj" />
+    <Project Path="src/SupportFlowAI.Application/SupportFlowAI.Application.csproj" />
+    <Project Path="src/SupportFlowAI.Domain/SupportFlowAI.Domain.csproj" />
+    <Project Path="src/SupportFlowAI.Infrastructure/SupportFlowAI.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SupportFlowAI.Tests/SupportFlowAI.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -11,7 +11,7 @@ builder.Services.AddMvc(options =>
    options.SuppressAsyncSuffixInActionNames = false;
 });
 
-builder.Services.AddSupportFlowInfrastructure();
+builder.Services.AddSupportFlowInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

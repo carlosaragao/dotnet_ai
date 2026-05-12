@@ -104,3 +104,15 @@ D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFl
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\obj\Debug\net10.0\SupportFlowAI.Tests.pdb
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\obj\Debug\net10.0\SupportFlowAI.Tests.genruntimeconfig.cache
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\obj\Debug\net10.0\ref\SupportFlowAI.Tests.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Configuration.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Http.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Logging.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Options.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\tests\SupportFlowAI.Tests\bin\Debug\net10.0\Microsoft.Extensions.Primitives.dll

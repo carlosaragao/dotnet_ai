@@ -4,5 +4,7 @@ public sealed record AiTextGenerationRequest(
     string Prompt,
     string? SystemPrompt,
     double Temperature,
-    int MaxOutputTokens
+    int MaxOutputTokens,
+    string? Model = null,
+    double? TopP = null
 );

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using SupportFlowAI.Application.Interfaces;
+using SupportFlowAI.Application.Prompts;
 using SupportFlowAI.Application.UseCases;
 using SupportFlowAI.Infrastructure.OpenAI;
 using SupportFlowAI.Infrastructure.Repositories;
@@ -38,12 +39,17 @@ public static class DependencyInjection
 
         services.AddSingleton<IVectorSimilarity, CosineVectorSimilarity>();
 
+        services.AddSingleton<PromptTemplateBuilder>();
+        services.AddSingleton<IAiModelSettings, OpenAiModelSettings>();
+
         services.AddScoped<CreateTicketUseCase>();
         services.AddScoped<GetTicketByIdUseCase>();
         services.AddScoped<ListTicketsUseCase>();
         services.AddScoped<AnalyzeTicketUseCase>();
         services.AddScoped<ExplainLlmConceptUseCase>();
         services.AddScoped<CompareEmbeddingsUseCase>();
+        services.AddScoped<ExecutePromptExperimentUseCase>();
+        services.AddScoped<ListPromptLabModelsUseCase>();
         
         return services;
     }

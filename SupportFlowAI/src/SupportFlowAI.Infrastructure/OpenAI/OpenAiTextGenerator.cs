@@ -9,7 +9,10 @@ namespace SupportFlowAI.Infrastructure.OpenAI;
 
 public sealed class OpenAiTextGenerator : IAiTextGenerator
 {
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
+    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
 
     private readonly HttpClient _httpClient;
     private readonly OpenAiOptions _options;
@@ -35,12 +38,17 @@ public sealed class OpenAiTextGenerator : IAiTextGenerator
         if (request.MaxOutputTokens <= 0)
             throw new ArgumentException("MaxOutputTokens deve ser maior que zero.");
 
+        var model = string.IsNullOrWhiteSpace(request.Model)
+            ? _options.ChatModel
+            : request.Model;
+
         var openAiRequest = new OpenAiResponseRequest(
-            Model: _options.ChatModel,
+            Model: model,
             Instructions: request.SystemPrompt,
             Input: request.Prompt,
             Temperature: request.Temperature,
-            MaxOutputTokens: request.MaxOutputTokens
+            MaxOutputTokens: request.MaxOutputTokens,
+            TopP: request.TopP
         );
 
         var response = await _httpClient.PostAsJsonAsync(
@@ -93,7 +101,8 @@ public sealed class OpenAiTextGenerator : IAiTextGenerator
         [property: JsonPropertyName("instructions")] string? Instructions,
         [property: JsonPropertyName("input")] string Input,
         [property: JsonPropertyName("temperature")] double Temperature,
-        [property: JsonPropertyName("max_output_tokens")] int MaxOutputTokens
+        [property: JsonPropertyName("max_output_tokens")] int MaxOutputTokens,
+        [property: JsonPropertyName("top_p")] double? TopP
     );
 
     private sealed record OpenAiResponse(

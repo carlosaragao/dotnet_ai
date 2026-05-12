@@ -7,6 +7,8 @@ using SupportFlowAI.Application.Prompts;
 using SupportFlowAI.Application.UseCases;
 using SupportFlowAI.Infrastructure.OpenAI;
 using SupportFlowAI.Infrastructure.Repositories;
+using SupportFlowAI.Application.ML;
+using SupportFlowAI.Infrastructure.ML;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -30,6 +32,7 @@ public static class DependencyInjection
         });
 
         services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
+        services.AddSingleton<TicketMlModelPaths>();
 
         services.AddHttpClient<IAiTextGenerator, OpenAiTextGenerator>(ConfigureOpenAiClient);
 
@@ -42,6 +45,12 @@ public static class DependencyInjection
         services.AddSingleton<PromptTemplateBuilder>();
         services.AddSingleton<IAiModelSettings, OpenAiModelSettings>();
 
+        services.AddScoped<ITicketMlModelTrainer, MlNetTicketModelTrainer>();
+        services.AddScoped<ITicketMlPredictor, MlNetTicketPredictor>();
+
+        services.AddScoped<TrainTicketMlModelsUseCase>();
+        services.AddScoped<PredictTicketWithMlUseCase>();
+
         services.AddScoped<CreateTicketUseCase>();
         services.AddScoped<GetTicketByIdUseCase>();
         services.AddScoped<ListTicketsUseCase>();
@@ -50,6 +59,7 @@ public static class DependencyInjection
         services.AddScoped<CompareEmbeddingsUseCase>();
         services.AddScoped<ExecutePromptExperimentUseCase>();
         services.AddScoped<ListPromptLabModelsUseCase>();
+        
         
         return services;
     }

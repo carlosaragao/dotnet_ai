@@ -9,6 +9,8 @@ using SupportFlowAI.Infrastructure.OpenAI;
 using SupportFlowAI.Infrastructure.Repositories;
 using SupportFlowAI.Application.ML;
 using SupportFlowAI.Infrastructure.ML;
+using Microsoft.SemanticKernel;
+using SupportFlowAI.Infrastructure.AzureAI;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -31,6 +33,19 @@ public static class DependencyInjection
                 throw new InvalidOperationException("A variável OPENAI_API_KEY não foi configurada.");
         });
 
+        services.Configure<AzureLanguageOptions>(
+            configuration.GetSection(AzureLanguageOptions.SectionName)
+        );
+
+        services.PostConfigure<AzureLanguageOptions>(options =>
+{
+            if (string.IsNullOrWhiteSpace(options.Endpoint))
+                options.Endpoint = Environment.GetEnvironmentVariable("AZURE_AI_LANGUAGE_ENDPOINT") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.Key))
+                options.Key = Environment.GetEnvironmentVariable("AZURE_AI_LANGUAGE_KEY") ?? string.Empty;
+        });
+
         services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
         services.AddSingleton<TicketMlModelPaths>();
 
@@ -44,6 +59,24 @@ public static class DependencyInjection
 
         services.AddSingleton<PromptTemplateBuilder>();
         services.AddSingleton<IAiModelSettings, OpenAiModelSettings>();
+
+        services.AddSingleton<ICognitiveTextAnalyzer, AzureLanguageTextAnalyzer>();
+
+        services.AddSingleton<Kernel>(provider =>
+        {
+            var openAiOptions = provider
+                .GetRequiredService<Microsoft.Extensions.Options.IOptions<OpenAiOptions>>()
+                .Value;
+
+            var kernelBuilder = Kernel.CreateBuilder();
+
+            kernelBuilder.AddOpenAIChatCompletion(
+                modelId: openAiOptions.ChatModel,
+                apiKey: openAiOptions.ApiKey
+            );
+
+            return kernelBuilder.Build();
+        });
 
         services.AddScoped<ITicketMlModelTrainer, MlNetTicketModelTrainer>();
         services.AddScoped<ITicketMlPredictor, MlNetTicketPredictor>();
@@ -59,6 +92,7 @@ public static class DependencyInjection
         services.AddScoped<CompareEmbeddingsUseCase>();
         services.AddScoped<ExecutePromptExperimentUseCase>();
         services.AddScoped<ListPromptLabModelsUseCase>();
+        services.AddScoped<GenerateSemanticKernelTicketInsightUseCase>();
         
         
         return services;

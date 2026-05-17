@@ -51,6 +51,10 @@
             "Microsoft.ML": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Microsoft.SemanticKernel": {
+              "target": "Package",
+              "version": "[1.76.0, )"
             }
           },
           "imports": [

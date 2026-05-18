@@ -11,6 +11,8 @@ using SupportFlowAI.Application.ML;
 using SupportFlowAI.Infrastructure.ML;
 using Microsoft.SemanticKernel;
 using SupportFlowAI.Infrastructure.AzureAI;
+using System.Net.Http.Headers;
+using SupportFlowAI.Infrastructure.FoundryAI;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -44,6 +46,49 @@ public static class DependencyInjection
 
             if (string.IsNullOrWhiteSpace(options.Key))
                 options.Key = Environment.GetEnvironmentVariable("AZURE_AI_LANGUAGE_KEY") ?? string.Empty;
+        });
+
+        services.Configure<FoundryAiOptions>(
+            configuration.GetSection(FoundryAiOptions.SectionName)
+        );
+
+        services.PostConfigure<FoundryAiOptions>(options =>
+        {
+            if (string.IsNullOrWhiteSpace(options.Endpoint))
+                options.Endpoint = Environment.GetEnvironmentVariable("FOUNDRY_AI_ENDPOINT") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.ApiKey))
+                options.ApiKey = Environment.GetEnvironmentVariable("FOUNDRY_AI_API_KEY") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.Model))
+                options.Model = Environment.GetEnvironmentVariable("FOUNDRY_AI_MODEL") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.Endpoint))
+                throw new InvalidOperationException("FOUNDRY_AI_ENDPOINT não configurado.");
+
+            if (string.IsNullOrWhiteSpace(options.ApiKey))
+                throw new InvalidOperationException("FOUNDRY_AI_API_KEY não configurado.");
+
+            if (string.IsNullOrWhiteSpace(options.Model))
+                throw new InvalidOperationException("FOUNDRY_AI_MODEL não configurado.");
+        });
+
+        services.AddHttpClient<IFoundryAiService, FoundryAiService>((provider, client) =>
+        {
+            var options = provider
+                .GetRequiredService<IOptions<FoundryAiOptions>>()
+                .Value;
+
+            var endpoint = options.Endpoint.EndsWith("/")
+                ? options.Endpoint
+                : options.Endpoint + "/";
+
+            client.BaseAddress = new Uri(endpoint);
+
+            client.DefaultRequestHeaders.Add("api-key", options.ApiKey);
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
         });
 
         services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
@@ -93,6 +138,7 @@ public static class DependencyInjection
         services.AddScoped<ExecutePromptExperimentUseCase>();
         services.AddScoped<ListPromptLabModelsUseCase>();
         services.AddScoped<GenerateSemanticKernelTicketInsightUseCase>();
+        services.AddScoped<GenerateFoundryTicketAnswerUseCase>();
         
         
         return services;

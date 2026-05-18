@@ -180,6 +180,10 @@ public static class DependencyInjection
 
         services.AddScoped<InspectTicketWithKernelUseCase>();
         services.AddScoped<GenerateTicketAnswerWithKernelUseCase>();
+
+        services.AddScoped<CreateWorkflowPlanUseCase>();
+        services.AddScoped<ExecuteWorkflowPlanUseCase>();
+        services.AddScoped<RunSupportAgentWorkflowUseCase>();
         
         return services;
     }

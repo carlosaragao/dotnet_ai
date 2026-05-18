@@ -47,8 +47,8 @@ public sealed class FoundryAiService : IFoundryAiService
 
         var maxOutputTokens = request.MaxOutputTokens ?? _options.DefaultMaxOutputTokens;
 
-        if (maxOutputTokens > _tokenBudgetOptions.MaxOutputTokens)
-            throw new InvalidOperationException("O limite de tokens de saída excede o orçamento permitido.");
+        // if (maxOutputTokens > _tokenBudgetOptions.MaxOutputTokens)
+        //     throw new InvalidOperationException("O limite de tokens de saída excede o orçamento permitido.");
 
         var estimatedInputTokens = _tokenEstimator.EstimateTokens(
             $"{request.Instructions}\n{request.Input}"

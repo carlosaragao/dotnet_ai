@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SupportFlowAI.Application.AI;
 using SupportFlowAI.Application.DTOs.FoundryAI;
 using SupportFlowAI.Application.Interfaces;
 using SupportFlowAI.Application.UseCases;
@@ -10,13 +11,19 @@ namespace SupportFlowAI.Api.Controllers;
 public sealed class FoundryAiController : ControllerBase
 {
     private readonly IFoundryAiService _foundryAiService;
+    private readonly IFoundryAiStreamingService _streamingService;
+    private readonly IAiUsageRepository _usageRepository;
     private readonly GenerateFoundryTicketAnswerUseCase _generateTicketAnswerUseCase;
 
     public FoundryAiController(
         IFoundryAiService foundryAiService,
+        IFoundryAiStreamingService streamingService,
+        IAiUsageRepository usageRepository,
         GenerateFoundryTicketAnswerUseCase generateTicketAnswerUseCase)
     {
         _foundryAiService = foundryAiService;
+        _streamingService = streamingService;
+        _usageRepository = usageRepository;
         _generateTicketAnswerUseCase = generateTicketAnswerUseCase;
     }
 
@@ -42,6 +49,33 @@ public sealed class FoundryAiController : ControllerBase
         {
             return StatusCode(502, new { error = exception.Message });
         }
+    }
+
+    [HttpPost("responses/stream")]
+    public async Task StreamAsync(
+        [FromBody] FoundryAiStreamRequest request,
+        CancellationToken cancellationToken)
+    {
+        Response.ContentType = "text/plain; charset=utf-8";
+
+        await foreach (var delta in _streamingService.StreamAsync(
+            request.Input,
+            request.Instructions,
+            request.Temperature,
+            request.MaxOutputTokens,
+            cancellationToken))
+        {
+            await Response.WriteAsync(delta, cancellationToken);
+            await Response.Body.FlushAsync(cancellationToken);
+        }
+    }
+
+    [HttpGet("usage")]
+    public async Task<ActionResult<IReadOnlyCollection<AiUsageRecord>>> ListUsageAsync(
+        CancellationToken cancellationToken)
+    {
+        var records = await _usageRepository.ListAsync(cancellationToken);
+        return Ok(records);
     }
 
     [HttpPost("tickets/{ticketId:guid}/answer")]

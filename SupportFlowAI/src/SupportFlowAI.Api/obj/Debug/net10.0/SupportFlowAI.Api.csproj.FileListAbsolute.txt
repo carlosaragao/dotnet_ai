@@ -89,3 +89,15 @@ D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFl
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\OpenAI.dll
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\System.ClientModel.dll
 D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\System.Memory.Data.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.AmbientMetadata.Application.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Compliance.Abstractions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.DependencyInjection.AutoActivation.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Http.Diagnostics.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Http.Resilience.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Resilience.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.Abstractions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Polly.Core.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Polly.Extensions.dll
+D:\Dados HD\FIAP\Disciplinas\Inteligência Artificial com .NET\projeto\SupportFlowAI\src\SupportFlowAI.Api\bin\Debug\net10.0\Polly.RateLimiting.dll

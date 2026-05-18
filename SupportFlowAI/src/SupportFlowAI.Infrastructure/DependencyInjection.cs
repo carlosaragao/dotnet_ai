@@ -11,8 +11,9 @@ using SupportFlowAI.Application.ML;
 using SupportFlowAI.Infrastructure.ML;
 using Microsoft.SemanticKernel;
 using SupportFlowAI.Infrastructure.AzureAI;
-using System.Net.Http.Headers;
 using SupportFlowAI.Infrastructure.FoundryAI;
+using Microsoft.Extensions.Http.Resilience;
+using SupportFlowAI.Application.AI;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -33,6 +34,12 @@ public static class DependencyInjection
 
             if (string.IsNullOrWhiteSpace(options.ApiKey))
                 throw new InvalidOperationException("A variável OPENAI_API_KEY não foi configurada.");
+        });
+
+        services.Configure<TokenBudgetOptions>(options =>
+        {
+            options.MaxEstimatedInputTokens = 3000;
+            options.MaxOutputTokens = 700;
         });
 
         services.Configure<AzureLanguageOptions>(
@@ -75,22 +82,16 @@ public static class DependencyInjection
 
         services.AddHttpClient<IFoundryAiService, FoundryAiService>((provider, client) =>
         {
-            var options = provider
-                .GetRequiredService<IOptions<FoundryAiOptions>>()
-                .Value;
+            ConfigureFoundryHttpClient(provider, client);
+        })
+        .AddStandardResilienceHandler();
 
-            var endpoint = options.Endpoint.EndsWith("/")
-                ? options.Endpoint
-                : options.Endpoint + "/";
-
-            client.BaseAddress = new Uri(endpoint);
-
-            client.DefaultRequestHeaders.Add("api-key", options.ApiKey);
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json")
-            );
-        });
-
+        services.AddHttpClient<IFoundryAiStreamingService, FoundryAiStreamingService>((provider, client) =>
+        {
+            ConfigureFoundryHttpClient(provider, client);
+        })
+        .AddStandardResilienceHandler();
+        
         services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
         services.AddSingleton<TicketMlModelPaths>();
 
@@ -123,6 +124,9 @@ public static class DependencyInjection
             return kernelBuilder.Build();
         });
 
+        services.AddSingleton<ITextTokenEstimator, SimpleTextTokenEstimator>();
+        services.AddSingleton<IAiUsageRepository, InMemoryAiUsageRepository>();
+
         services.AddScoped<ITicketMlModelTrainer, MlNetTicketModelTrainer>();
         services.AddScoped<ITicketMlPredictor, MlNetTicketPredictor>();
 
@@ -151,5 +155,24 @@ public static class DependencyInjection
         client.BaseAddress = new Uri(options.BaseUrl);
         client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", options.ApiKey);
+    }
+
+    private static void ConfigureFoundryHttpClient(IServiceProvider provider, HttpClient client)
+    {
+        var options = provider
+            .GetRequiredService<IOptions<FoundryAiOptions>>()
+            .Value;
+
+        var endpoint = options.Endpoint.EndsWith("/")
+            ? options.Endpoint
+            : options.Endpoint + "/";
+
+        client.BaseAddress = new Uri(endpoint);
+
+        client.DefaultRequestHeaders.Clear();
+        client.DefaultRequestHeaders.Add("api-key", options.ApiKey);
+        client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json")
+        );
     }
 }

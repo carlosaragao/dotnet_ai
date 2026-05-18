@@ -18,6 +18,7 @@ using SupportFlowAI.Infrastructure.AzureSpeech;
 using SupportFlowAI.Infrastructure.SemanticKernel;
 using SupportFlowAI.Infrastructure.SemanticKernel.Memory;
 using SupportFlowAI.Infrastructure.SemanticKernel.Plugins;
+using SupportFlowAI.Infrastructure.Ollama;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -110,6 +111,10 @@ public static class DependencyInjection
                 options.Region = Environment.GetEnvironmentVariable("AZURE_SPEECH_REGION") ?? string.Empty;
         });
 
+        services.Configure<OllamaOptions>(
+            configuration.GetSection(OllamaOptions.SectionName)
+        );
+
         services.AddHttpClient<IFoundryAiService, FoundryAiService>((provider, client) =>
         {
             ConfigureFoundryHttpClient(provider, client);
@@ -121,6 +126,19 @@ public static class DependencyInjection
             ConfigureFoundryHttpClient(provider, client);
         })
         .AddStandardResilienceHandler();
+
+        services.AddHttpClient<IOllamaChatService, OllamaChatService>((provider, client) =>
+        {
+            var options = provider
+                .GetRequiredService<Microsoft.Extensions.Options.IOptions<OllamaOptions>>()
+                .Value;
+
+            var baseUrl = options.BaseUrl.EndsWith("/")
+                ? options.BaseUrl
+                : options.BaseUrl + "/";
+
+            client.BaseAddress = new Uri(baseUrl);
+        });
         
         services.AddHttpClient<IAiTextGenerator, OpenAiTextGenerator>(ConfigureOpenAiClient);
         services.AddHttpClient<IEmbeddingGenerator, OpenAiEmbeddingGenerator>(ConfigureOpenAiClient);
@@ -184,6 +202,7 @@ public static class DependencyInjection
         services.AddScoped<CreateWorkflowPlanUseCase>();
         services.AddScoped<ExecuteWorkflowPlanUseCase>();
         services.AddScoped<RunSupportAgentWorkflowUseCase>();
+        services.AddScoped<GenerateLocalTicketAnswerUseCase>();
         
         return services;
     }

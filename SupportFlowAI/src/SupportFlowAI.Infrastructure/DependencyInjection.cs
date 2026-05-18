@@ -165,6 +165,8 @@ public static class DependencyInjection
         services.AddScoped<GenerateFoundryTicketAnswerUseCase>();
         services.AddScoped<CreateTicketFromImageUseCase>();
         services.AddScoped<CreateTicketFromAudioUseCase>();
+        services.AddScoped<AnalyzeMultimodalInputUseCase>();
+        services.AddScoped<CreateTicketFromMultimodalInputUseCase>();
         
         return services;
     }

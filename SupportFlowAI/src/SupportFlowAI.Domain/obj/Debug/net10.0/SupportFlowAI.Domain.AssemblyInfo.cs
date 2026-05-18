@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SupportFlowAI.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f9f181f6b8b6443b7f8e719448aa301f4503366")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab440e6912d457ffcf61edcf4f440eba2140c2e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SupportFlowAI.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SupportFlowAI.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,6 +15,9 @@ using SupportFlowAI.Infrastructure.FoundryAI;
 using SupportFlowAI.Application.AI;
 using SupportFlowAI.Infrastructure.AzureVision;
 using SupportFlowAI.Infrastructure.AzureSpeech;
+using SupportFlowAI.Infrastructure.SemanticKernel;
+using SupportFlowAI.Infrastructure.SemanticKernel.Memory;
+using SupportFlowAI.Infrastructure.SemanticKernel.Plugins;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -147,6 +150,7 @@ public static class DependencyInjection
         services.AddSingleton<IAiUsageRepository, InMemoryAiUsageRepository>();
         services.AddSingleton<IOcrService, AzureVisionOcrService>();
         services.AddSingleton<ISpeechToTextService, AzureSpeechToTextService>();
+        services.AddSingleton<IWorkflowMemoryStore, InMemoryWorkflowMemoryStore>();
 
         services.AddScoped<IAiTicketAnalyzer, OpenAiTicketAnalyzer>();
         services.AddScoped<ITicketMlModelTrainer, MlNetTicketModelTrainer>();
@@ -167,6 +171,15 @@ public static class DependencyInjection
         services.AddScoped<CreateTicketFromAudioUseCase>();
         services.AddScoped<AnalyzeMultimodalInputUseCase>();
         services.AddScoped<CreateTicketFromMultimodalInputUseCase>();
+
+        services.AddScoped<TicketKernelPlugin>();
+        services.AddScoped<AiTicketKernelPlugin>();
+        services.AddScoped<WorkflowMemoryPlugin>();
+
+        services.AddScoped<ISupportFlowKernelFactory, SupportFlowKernelFactory>();
+
+        services.AddScoped<InspectTicketWithKernelUseCase>();
+        services.AddScoped<GenerateTicketAnswerWithKernelUseCase>();
         
         return services;
     }

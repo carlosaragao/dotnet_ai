@@ -12,8 +12,9 @@ using SupportFlowAI.Infrastructure.ML;
 using Microsoft.SemanticKernel;
 using SupportFlowAI.Infrastructure.AzureAI;
 using SupportFlowAI.Infrastructure.FoundryAI;
-using Microsoft.Extensions.Http.Resilience;
 using SupportFlowAI.Application.AI;
+using SupportFlowAI.Infrastructure.AzureVision;
+using SupportFlowAI.Infrastructure.AzureSpeech;
 
 namespace SupportFlowAI.Infrastructure;
 
@@ -80,6 +81,32 @@ public static class DependencyInjection
                 throw new InvalidOperationException("FOUNDRY_AI_MODEL não configurado.");
         });
 
+        services.Configure<AzureVisionOptions>(
+            configuration.GetSection(AzureVisionOptions.SectionName)
+        );
+
+        services.PostConfigure<AzureVisionOptions>(options =>
+        {
+            if (string.IsNullOrWhiteSpace(options.Endpoint))
+                options.Endpoint = Environment.GetEnvironmentVariable("AZURE_VISION_ENDPOINT") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.Key))
+                options.Key = Environment.GetEnvironmentVariable("AZURE_VISION_KEY") ?? string.Empty;
+        });
+
+        services.Configure<AzureSpeechOptions>(
+            configuration.GetSection(AzureSpeechOptions.SectionName)
+        );
+
+        services.PostConfigure<AzureSpeechOptions>(options =>
+        {
+            if (string.IsNullOrWhiteSpace(options.Key))
+                options.Key = Environment.GetEnvironmentVariable("AZURE_SPEECH_KEY") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(options.Region))
+                options.Region = Environment.GetEnvironmentVariable("AZURE_SPEECH_REGION") ?? string.Empty;
+        });
+
         services.AddHttpClient<IFoundryAiService, FoundryAiService>((provider, client) =>
         {
             ConfigureFoundryHttpClient(provider, client);
@@ -92,22 +119,15 @@ public static class DependencyInjection
         })
         .AddStandardResilienceHandler();
         
-        services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
-        services.AddSingleton<TicketMlModelPaths>();
-
         services.AddHttpClient<IAiTextGenerator, OpenAiTextGenerator>(ConfigureOpenAiClient);
-
-        services.AddScoped<IAiTicketAnalyzer, OpenAiTicketAnalyzer>();
-
         services.AddHttpClient<IEmbeddingGenerator, OpenAiEmbeddingGenerator>(ConfigureOpenAiClient);
 
+        services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
+        services.AddSingleton<TicketMlModelPaths>();
         services.AddSingleton<IVectorSimilarity, CosineVectorSimilarity>();
-
         services.AddSingleton<PromptTemplateBuilder>();
         services.AddSingleton<IAiModelSettings, OpenAiModelSettings>();
-
         services.AddSingleton<ICognitiveTextAnalyzer, AzureLanguageTextAnalyzer>();
-
         services.AddSingleton<Kernel>(provider =>
         {
             var openAiOptions = provider
@@ -123,16 +143,16 @@ public static class DependencyInjection
 
             return kernelBuilder.Build();
         });
-
         services.AddSingleton<ITextTokenEstimator, SimpleTextTokenEstimator>();
         services.AddSingleton<IAiUsageRepository, InMemoryAiUsageRepository>();
+        services.AddSingleton<IOcrService, AzureVisionOcrService>();
+        services.AddSingleton<ISpeechToTextService, AzureSpeechToTextService>();
 
+        services.AddScoped<IAiTicketAnalyzer, OpenAiTicketAnalyzer>();
         services.AddScoped<ITicketMlModelTrainer, MlNetTicketModelTrainer>();
         services.AddScoped<ITicketMlPredictor, MlNetTicketPredictor>();
-
         services.AddScoped<TrainTicketMlModelsUseCase>();
         services.AddScoped<PredictTicketWithMlUseCase>();
-
         services.AddScoped<CreateTicketUseCase>();
         services.AddScoped<GetTicketByIdUseCase>();
         services.AddScoped<ListTicketsUseCase>();
@@ -143,7 +163,8 @@ public static class DependencyInjection
         services.AddScoped<ListPromptLabModelsUseCase>();
         services.AddScoped<GenerateSemanticKernelTicketInsightUseCase>();
         services.AddScoped<GenerateFoundryTicketAnswerUseCase>();
-        
+        services.AddScoped<CreateTicketFromImageUseCase>();
+        services.AddScoped<CreateTicketFromAudioUseCase>();
         
         return services;
     }

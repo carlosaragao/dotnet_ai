@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "BfKq2FHBB5g=",
+  "dgSpecHash": "a1IALZ2Raqs=",
   "success": true,
   "projectFilePath": "D:\\Dados HD\\FIAP\\Disciplinas\\Inteligência Artificial com .NET\\projeto\\SupportFlowAI\\src\\SupportFlowAI.Infrastructure\\SupportFlowAI.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\azure.ai.openai\\2.9.0-beta.1\\azure.ai.openai.2.9.0-beta.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\azure.ai.textanalytics\\5.3.0\\azure.ai.textanalytics.5.3.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\azure.ai.vision.imageanalysis\\1.0.0\\azure.ai.vision.imageanalysis.1.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\azure.core\\1.51.1\\azure.core.1.51.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\10.0.2\\microsoft.bcl.asyncinterfaces.10.0.2.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.cognitiveservices.speech\\1.50.0\\microsoft.cognitiveservices.speech.1.50.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.ai\\10.5.0\\microsoft.extensions.ai.10.5.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\10.5.0\\microsoft.extensions.ai.abstractions.10.5.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.ai.openai\\10.5.0\\microsoft.extensions.ai.openai.10.5.0.nupkg.sha512",

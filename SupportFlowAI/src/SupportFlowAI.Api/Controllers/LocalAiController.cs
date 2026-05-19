@@ -11,13 +11,19 @@ public sealed class LocalAiController : ControllerBase
 {
     private readonly IOllamaChatService _ollamaChatService;
     private readonly GenerateLocalTicketAnswerUseCase _generateLocalTicketAnswerUseCase;
+    private readonly BenchmarkLocalModelsUseCase _benchmarkLocalModelsUseCase;
+    private readonly IOllamaHealthService _healthService;
 
     public LocalAiController(
         IOllamaChatService ollamaChatService,
-        GenerateLocalTicketAnswerUseCase generateLocalTicketAnswerUseCase)
+        GenerateLocalTicketAnswerUseCase generateLocalTicketAnswerUseCase,
+        BenchmarkLocalModelsUseCase benchmarkLocalModelsUseCase,
+        IOllamaHealthService healthService)
     {
         _ollamaChatService = ollamaChatService;
         _generateLocalTicketAnswerUseCase = generateLocalTicketAnswerUseCase;
+        _benchmarkLocalModelsUseCase = benchmarkLocalModelsUseCase;
+        _healthService = healthService;
     }
 
     [HttpPost("chat")]
@@ -66,5 +72,37 @@ public sealed class LocalAiController : ControllerBase
         {
             return StatusCode(502, new { error = exception.Message });
         }
+    }
+
+    [HttpPost("benchmark")]
+    public async Task<ActionResult<LocalModelBenchmarkResponse>> BenchmarkAsync(
+        [FromBody] LocalModelBenchmarkRequest request,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var response = await _benchmarkLocalModelsUseCase.HandleAsync(
+                request,
+                cancellationToken
+            );
+
+            return Ok(response);
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new { error = exception.Message });
+        }
+        catch (InvalidOperationException exception)
+        {
+            return StatusCode(502, new { error = exception.Message });
+        }
+    }
+
+    [HttpGet("health")]
+    public async Task<ActionResult<LocalAiHealthResponse>> HealthAsync(
+        CancellationToken cancellationToken)
+    {
+        var response = await _healthService.CheckAsync(cancellationToken);
+        return Ok(response);
     }
 }
